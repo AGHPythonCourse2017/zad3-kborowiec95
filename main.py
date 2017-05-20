@@ -23,4 +23,4 @@ def probability_of_sentence(sentence):
         return "", ""
 
 
-print(probability_of_sentence("People like The Beatles"))
+print(probability_of_sentence("Poland is in Europe"))
