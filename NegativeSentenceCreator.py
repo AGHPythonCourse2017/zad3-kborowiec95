@@ -1,4 +1,4 @@
-import IrregularVerbsSearcher
+from VerbsFinder import *
 
 tense_verbs = ["am", "are", "is",
                "was", "were",
@@ -11,15 +11,6 @@ def find_verb(sentence):
     for i in range(0, len(words)):
         if words[i] in tense_verbs:
             return words[i], i, words
-    return "", "", words
-
-
-def find_past_simple_verb(sentence):
-    words = sentence.split(" ")
-    for i in range(0, len(words)):
-        first_form = IrregularVerbsSearcher.first_form_past_simple(words[i])
-        if first_form != "":
-            return first_form, i, words
     return "", "", words
 
 
@@ -41,14 +32,11 @@ def get_negative(sentence):
         # creating sentence with 'not'
         return create_negative(index, words, words[index] + " not")
 
-    # check past simple :
-    verb, index, words = find_past_simple_verb(sentence)
-    if verb != "":
-        # creating sensence with 'did not' and first form of verb
-        return create_negative(index, words, "did not " + verb)
+    # check past simple and present simple :
+    verbs_finder = VerbsFinder()
+    negative_verb, index, words = verbs_finder.get_negative_verb(sentence)
+    if negative_verb != "":
+        return create_negative(index, words, negative_verb)
 
+    # verb haven't found :
     return ""
-    # try in present simple :
-
-
-print(get_negative("I distroyed my car"))
