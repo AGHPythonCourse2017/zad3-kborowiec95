@@ -6,7 +6,10 @@ def probability_of_sentence(sentence):
     gs = google_searcher()
     try:
         true_score = gs.number_of_google_searches(sentence)
-        false_score = gs.number_of_google_searches(get_negative(sentence))
+        print(sentence+" -> "+str(true_score))
+        negative = get_negative(sentence)
+        false_score = gs.number_of_google_searches(negative)
+        print(negative+" -> "+str(false_score))
         score = true_score / (true_score + false_score) * 100
         if score > 50:
             return score, 1
@@ -20,4 +23,4 @@ def probability_of_sentence(sentence):
         return "", ""
 
 
-print(probability_of_sentence("Columbus discovered America"))
+print(probability_of_sentence("Columbus has discovered America"))

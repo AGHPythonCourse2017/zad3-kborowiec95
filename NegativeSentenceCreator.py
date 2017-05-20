@@ -2,8 +2,8 @@ import GoogleResultsGetter
 
 tense_nouns = ["am", "are", "is",
                "was", "were",
-               "have", "had",
-               "will", "would"]
+               "has", "have", "had",
+               "will", "would", "do", "did"]
 
 
 def find_noun(sentence):
@@ -30,6 +30,6 @@ def get_negative(sentence):
     present_simple_num = gs.number_of_google_searches("don't "+sentence)
     past_simple_num = gs.number_of_google_searches("didn't "+sentence)
     if present_simple_num > past_simple_num:
-        return "Present simple"
+        return "don't "+sentence
     else:
-        return "Past Simple"
+        return "didn't "+sentence
