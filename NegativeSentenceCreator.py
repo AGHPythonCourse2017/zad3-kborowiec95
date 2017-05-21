@@ -26,6 +26,9 @@ def create_negative(index, words, negative_form):
 
 
 def get_negative(sentence):
+    if " not " in sentence:
+        negative = sentence.replace("not ", "")
+        return negative
     # check all tenses apart from past and present simple :
     verb, index, words = find_verb(sentence)
     if verb != "":

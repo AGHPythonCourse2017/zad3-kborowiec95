@@ -2,10 +2,10 @@ import urllib.request
 from bisect import bisect_left
 
 
-def binary_search(a, x, lo=0, hi=None):  # can't use a to specify default for hi
-    hi = hi if hi is not None else len(a)  # hi defaults to len(a)
-    pos = bisect_left(a, x, lo, hi)  # find insertion position
-    return pos if pos != hi and a[pos] == x else -1 # don't walk off the end
+def binary_search(a, x, lo=0, hi=None):
+    hi = hi if hi is not None else len(a)
+    pos = bisect_left(a, x, lo, hi)
+    return pos if pos != hi and a[pos] == x else -1
 
 
 class VerbsFinder:
@@ -36,15 +36,16 @@ class VerbsFinder:
 
     def get_negative_verb(self, sentence):
         words = sentence.split(" ")
-        # TODO : verbs are sorted do use binary search
         for i in range(0, len(words)):
-            for vrb in self.v_base:
-                if words[i] == vrb:
-                    return "do not " + vrb, i, words
-            for vrb in self.v_past_simple:
-                if words[i] == vrb:
-                    return "did not " + vrb, i, words
-            for vrb in self.v_pres_simple:
-                if words[i] == vrb:
-                    return "does not " + vrb, i, words
+            index = binary_search(self.v_base, words[i])
+            if index != -1:
+                return "do not " + words[i], i, words
+
+            index = binary_search(self.v_past_simple, words[i])
+            if index != -1:
+                return "did not " + words[i], i, words
+
+            index = binary_search(self.v_pres_simple, words[i])
+            if index != -1:
+                return "does not " + words[i], i, words
         return ""

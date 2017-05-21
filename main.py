@@ -6,15 +6,17 @@ def probability_of_sentence(sentence):
     gs = google_searcher()
     try:
         true_score = gs.number_of_google_searches(sentence)
-        print(sentence+" -> "+str(true_score))
         negative = get_negative(sentence)
         false_score = gs.number_of_google_searches(negative)
-        print(negative+" -> "+str(false_score))
-        score = true_score / (true_score + false_score) * 100
+        print(sentence)
+        print("vs")
+        print(negative)
+        print("----------------------------")
+        score = round(true_score / (true_score + false_score) * 100, 2)
         if score > 50:
-            return score, 1
+            return True, score
         else:
-            return score, 0
+            return False, round(100.0 - score, 2)
     except urllib.error.URLError:
         print("Connection problems")
         return "", ""
@@ -23,4 +25,6 @@ def probability_of_sentence(sentence):
         return "", ""
 
 
-print(probability_of_sentence("Poland is in Europe"))
+sentence = "Cracow is in Poland"
+answer, percents = probability_of_sentence(sentence)
+print("Sentence : " + sentence + " => " + str(answer) + " for : " + str(percents) + "%")
