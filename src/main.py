@@ -1,6 +1,15 @@
 from src.NegativeSentenceCreator import *
-
 from src.GoogleResultsGetter import *
+import sys
+
+
+def create_question(args):
+    n = len(args)
+    result = ""
+    for i in range(1, n - 1):
+        result += (str(args[i]) + " ")
+    result += str(args[n - 1])
+    return result
 
 
 def probability_of_sentence(sentence):
@@ -28,7 +37,12 @@ def probability_of_sentence(sentence):
         return "", "", ""
 
 
-question = "I move to Brazil"
+# MAIN SCRIPT :
+if len(sys.argv) == 1:
+    print("Ask me for something! : ./main [question]")
+    exit(1)
+
+question = create_question(sys.argv)
 answer, percents_true, percents_false = probability_of_sentence(question)
 
 if not (answer == ""):
@@ -38,3 +52,4 @@ if not (answer == ""):
     print("Final answer => " + str(answer))
 else:
     print("Error")
+exit(0)
