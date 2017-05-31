@@ -1,9 +1,9 @@
 import urllib.request
-from bisect import bisect_left
 
 tense_verbs = ["am", "are", "is",
                "was", "were",
                "has", "have", "had",
+               "might", "may", "could", "should", "shall",
                "will", "would", "do", "did"]
 
 
@@ -12,7 +12,7 @@ def find_tense_verb(sentence):
     for i in range(0, len(words)):
         if words[i] in tense_verbs:
             return words[i], i, words
-    return ""
+    return "", "", ""
 
 
 class VerbsFinder:
@@ -42,27 +42,42 @@ class VerbsFinder:
             self.verbs_list_pres_simple.append(pres)
 
     @staticmethod
-    def binary_search(lst, x, left=0, right=None):
-        right = right if right is not None else len(lst)
-        pos = bisect_left(lst, x, left, right)
-        return pos if pos != right and lst[pos] == x else -1
+    def find_index(lst, x):
+        for i in range(0, len(lst)):
+            if str(lst[i]) == str(x):
+                return i
+        return -1
 
     def is_base_verb(self, word):
-        return self.binary_search(self.verbs_list_base, word) != -1
+        return self.find_index(self.verbs_list_base, word) != -1
 
     def is_pres_simple_verb(self, word):
-        return self.binary_search(self.verbs_list_past_simple, word) != -1
+        return self.find_index(self.verbs_list_pres_simple, word) != -1
 
     def is_past_simple_verb(self, word):
-        return self.binary_search(self.verbs_list_pres_simple, word) != -1
+        return self.find_index(self.verbs_list_past_simple, word) != -1
+
+    def get_base_verb_by_pres_simple(self, pres_simple_word):
+        i = self.find_index(self.verbs_list_pres_simple, pres_simple_word)
+        if i != -1:
+            return self.verbs_list_base[i]
+        else:
+            return ""
+
+    def get_base_verb_by_past_simple(self, past_simple_word):
+        i = self.find_index(self.verbs_list_past_simple, past_simple_word)
+        if i != -1:
+            return self.verbs_list_base[i]
+        else:
+            return ""
 
     def find_verb(self, sentence):
         tense = find_tense_verb(sentence)
-        if tense != "":
+        if tense != ("", "", ""):
             return tense[0], tense[1]
         words = sentence.split(" ")
         for i in range(0, len(words)):
             v = words[i]
             if self.is_base_verb(v) or self.is_pres_simple_verb(v) or self.is_past_simple_verb(v):
                 return v, i
-        return ""
+        return "", ""

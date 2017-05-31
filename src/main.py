@@ -7,7 +7,8 @@ def probability_of_sentence(sentence):
     gs = GoogleResultsGetter("AIzaSyCZ9HvClGcCYqVxT9SruazjoHb9xNewuOM", "008201436329454125027:r1b12zwr7ko")
     try:
         true_score = gs.number_of_google_searches(sentence)
-        negation = get_negative(sentence)
+        vf = VerbsFinder()
+        negation = get_negative_sentence(sentence, vf)
         false_score = gs.number_of_google_searches(negation)
         print(sentence)
         print("vs")
@@ -21,13 +22,13 @@ def probability_of_sentence(sentence):
             return False, score_true, score_false
     except urllib.error.URLError:
         print("Connection problems")
-        return ""
+        return "", "", ""
     except ValueError:
         print("Wrong result")
-        return ""
+        return "", "", ""
 
 
-question = "Pope is dead"
+question = "I move to Brazil"
 answer, percents_true, percents_false = probability_of_sentence(question)
 
 if not (answer == ""):

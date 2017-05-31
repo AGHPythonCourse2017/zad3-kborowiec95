@@ -1,8 +1,16 @@
 from unittest import TestLoader, TextTestRunner, TestSuite
 
 from tests.GoogleResultsGetterTest import GoogleResultsGetterTests
-from tests.NegativeSentenceCreateorTest import NegativeSentenceCreatorTests
+from tests.NegativeSentenceCreatorTest import NegativeSentenceCreatorTests
 from tests.VerbsFinderTest import VerbsFinderTests
+from src.VerbsFinder import VerbsFinder
+
+verbs_finders = VerbsFinder()
+
+
+def get_verbs_finder():
+    return verbs_finders
+
 
 loader = TestLoader()
 suite = TestSuite((
