@@ -1,18 +1,5 @@
 from src.VerbsFinder import *
 
-tense_verbs = ["am", "are", "is",
-               "was", "were",
-               "has", "have", "had",
-               "will", "would", "do", "did"]
-
-
-def find_tense_verb(sentence):
-    words = sentence.split(" ")
-    for i in range(0, len(words)):
-        if words[i] in tense_verbs:
-            return words[i], i, words
-    return ""
-
 
 def get_negative_verb(full_sentence):
     words = full_sentence.split(" ")

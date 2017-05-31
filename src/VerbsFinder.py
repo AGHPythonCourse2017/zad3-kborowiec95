@@ -1,5 +1,18 @@
 import urllib.request
-import numpy
+from bisect import bisect_left
+
+tense_verbs = ["am", "are", "is",
+               "was", "were",
+               "has", "have", "had",
+               "will", "would", "do", "did"]
+
+
+def find_tense_verb(sentence):
+    words = sentence.split(" ")
+    for i in range(0, len(words)):
+        if words[i] in tense_verbs:
+            return words[i], i, words
+    return ""
 
 
 class VerbsFinder:
@@ -29,8 +42,10 @@ class VerbsFinder:
             self.verbs_list_pres_simple.append(pres)
 
     @staticmethod
-    def binary_search(list_of_elements, searched_elem):
-        return numpy.searchsorted(list_of_elements, searched_elem, side='left')
+    def binary_search(lst, x, left=0, right=None):
+        right = right if right is not None else len(lst)
+        pos = bisect_left(lst, x, left, right)
+        return pos if pos != right and lst[pos] == x else -1
 
     def is_base_verb(self, word):
         return self.binary_search(self.verbs_list_base, word) != -1
@@ -42,6 +57,9 @@ class VerbsFinder:
         return self.binary_search(self.verbs_list_pres_simple, word) != -1
 
     def find_verb(self, sentence):
+        tense = find_tense_verb(sentence)
+        if tense != "":
+            return tense[0], tense[1]
         words = sentence.split(" ")
         for i in range(0, len(words)):
             v = words[i]

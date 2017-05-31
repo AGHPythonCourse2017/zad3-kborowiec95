@@ -9,7 +9,19 @@ class GoogleResultsGetter:
 
     @staticmethod
     def create_google_request(request):
-        return request.replace(" ", "+")
+        if request == "":
+            return ""
+        result = ""
+        words = [w for w in request.split(" ") if w != ""]
+        n = len(words)
+        if n == 0:
+            return ""
+        if n == 1:
+            return words[0]
+        for i in range(0, n - 1):
+            result += (words[i] + "+")
+        result += words[n - 1]
+        return result
 
     def create_url(self, google_request):
         return "https://www.googleapis.com/customsearch/v1?key=" + self.key + \
