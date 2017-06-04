@@ -9,4 +9,4 @@ setup(name='TruthChecker',
       author='Kamil Borowiec',
       author_email='kborowiec95@gmail.com',
       license='MIT',
-      zip_safe=False, install_requires=['urllib.request', 'urllib.error'])
+      zip_safe=False)
