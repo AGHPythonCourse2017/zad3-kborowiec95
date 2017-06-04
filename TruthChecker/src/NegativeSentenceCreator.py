@@ -1,4 +1,4 @@
-from src.VerbsFinder import *
+from VerbsFinder import *
 
 
 def get_negative_verb(full_sentence, verbs_finder):

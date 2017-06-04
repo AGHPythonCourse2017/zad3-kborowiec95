@@ -1,5 +1,6 @@
 import unittest
-from src.NegativeSentenceCreator import *
+
+from NegativeSentenceCreator import *
 
 
 class NegativeSentenceCreatorTests(unittest.TestCase):

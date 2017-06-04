@@ -1,5 +1,6 @@
 import unittest
-from src.GoogleResultsGetter import GoogleResultsGetter
+
+from GoogleResultsGetter import GoogleResultsGetter
 
 
 class GoogleResultsGetterTests(unittest.TestCase):

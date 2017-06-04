@@ -1,5 +1,6 @@
 import unittest
-from src.VerbsFinder import *
+
+from VerbsFinder import *
 
 
 class VerbsFinderTests(unittest.TestCase):

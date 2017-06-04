@@ -1,6 +1,6 @@
-from src.NegativeSentenceCreator import *
-from src.GoogleResultsGetter import *
-import sys
+from NegativeSentenceCreator import *
+
+from GoogleResultsGetter import *
 
 
 def create_question(args):
@@ -37,19 +37,13 @@ def probability_of_sentence(sentence):
         return "", "", ""
 
 
-# MAIN SCRIPT :
-if len(sys.argv) == 1:
-    print("Ask me for something! : ./main [question]")
-    exit(1)
-
-question = create_question(sys.argv)
-answer, percents_true, percents_false = probability_of_sentence(question)
-
-if not (answer == ""):
-    print("Sentence : " + question)
-    print("True  => " + str(percents_true) + "%")
-    print("False => " + str(percents_false) + "%")
-    print("Final answer => " + str(answer))
-else:
-    print("Error")
-exit(0)
+def run(question):
+    answer, percents_true, percents_false = probability_of_sentence(question)
+    if not (answer == ""):
+        print("Sentence : " + question)
+        print("True  => " + str(percents_true) + "%")
+        print("False => " + str(percents_false) + "%")
+        print("Final answer => " + str(answer))
+    else:
+        print("Error")
+        exit(0)
