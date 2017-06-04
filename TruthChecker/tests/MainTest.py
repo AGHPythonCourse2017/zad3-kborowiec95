@@ -21,3 +21,6 @@ def run_tests():
     ))
     runner = TextTestRunner(verbosity=2)
     runner.run(suite)
+
+
+run_tests()
