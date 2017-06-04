@@ -1,6 +1,8 @@
-from NegativeSentenceCreator import *
+import urllib.error
 
-from TruthChecker.GoogleResultsGetter import *
+from TruthChecker.GoogleResultsGetter import GoogleResultsGetter
+from TruthChecker.NegativeSentenceCreator import get_negative_sentence
+from TruthChecker.VerbsFinder import VerbsFinder
 
 
 def create_question(args):

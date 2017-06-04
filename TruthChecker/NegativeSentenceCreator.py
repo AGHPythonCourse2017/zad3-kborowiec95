@@ -1,4 +1,4 @@
-from TruthChecker.VerbsFinder import *
+from TruthChecker.VerbsFinder import find_tense_verb
 
 
 def get_negative_verb(full_sentence, verbs_finder):
