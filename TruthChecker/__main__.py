@@ -1,8 +1,7 @@
 import sys
 
-from TruthChecker.src.Main import *
+from TruthChecker.Main import create_question, run
 
-# MAIN SCRIPT :
 if len(sys.argv) == 1:
     print("Ask me for something! : ./main [question]")
     exit(1)

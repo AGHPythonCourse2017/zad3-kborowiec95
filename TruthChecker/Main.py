@@ -1,6 +1,6 @@
 from NegativeSentenceCreator import *
 
-from GoogleResultsGetter import *
+from TruthChecker.GoogleResultsGetter import *
 
 
 def create_question(args):

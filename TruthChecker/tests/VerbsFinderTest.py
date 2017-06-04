@@ -1,6 +1,6 @@
 import unittest
 
-from VerbsFinder import *
+from TruthChecker.VerbsFinder import *
 
 
 class VerbsFinderTests(unittest.TestCase):

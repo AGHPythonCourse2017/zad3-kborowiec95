@@ -1,9 +1,9 @@
 from unittest import TestLoader, TextTestRunner, TestSuite
 
+from TruthChecker.VerbsFinder import VerbsFinder
 from TruthChecker.tests.GoogleResultsGetterTest import GoogleResultsGetterTests
 from TruthChecker.tests.NegativeSentenceCreatorTest import NegativeSentenceCreatorTests
 from TruthChecker.tests.VerbsFinderTest import VerbsFinderTests
-from VerbsFinder import VerbsFinder
 
 verbs_finders = VerbsFinder()
 

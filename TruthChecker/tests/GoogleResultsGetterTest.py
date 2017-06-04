@@ -1,6 +1,6 @@
 import unittest
 
-from GoogleResultsGetter import GoogleResultsGetter
+from TruthChecker.GoogleResultsGetter import GoogleResultsGetter
 
 
 class GoogleResultsGetterTests(unittest.TestCase):

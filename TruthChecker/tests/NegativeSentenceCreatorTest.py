@@ -1,6 +1,6 @@
 import unittest
 
-from NegativeSentenceCreator import *
+from TruthChecker.NegativeSentenceCreator import *
 
 
 class NegativeSentenceCreatorTests(unittest.TestCase):
