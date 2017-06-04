@@ -4,6 +4,7 @@ from TruthChecker.NegativeSentenceCreator import *
 
 
 class NegativeSentenceCreatorTests(unittest.TestCase):
+    from TruthChecker.VerbsFinder import VerbsFinder
     vf = VerbsFinder()
 
     def test_get_negative_verb(self):

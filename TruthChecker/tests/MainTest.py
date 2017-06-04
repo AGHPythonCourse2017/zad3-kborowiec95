@@ -1,9 +1,6 @@
 from unittest import TestLoader, TextTestRunner, TestSuite
 
 from TruthChecker.VerbsFinder import VerbsFinder
-from TruthChecker.tests.GoogleResultsGetterTest import GoogleResultsGetterTests
-from TruthChecker.tests.NegativeSentenceCreatorTest import NegativeSentenceCreatorTests
-from TruthChecker.tests.VerbsFinderTest import VerbsFinderTests
 
 verbs_finders = VerbsFinder()
 
@@ -14,6 +11,9 @@ def get_verbs_finder():
 
 def run_tests():
     loader = TestLoader()
+    from TruthChecker.tests.GoogleResultsGetterTest import GoogleResultsGetterTests
+    from TruthChecker.tests.VerbsFinderTest import VerbsFinderTests
+    from TruthChecker.tests.NegativeSentenceCreatorTest import NegativeSentenceCreatorTests
     suite = TestSuite((
         loader.loadTestsFromTestCase(GoogleResultsGetterTests),
         loader.loadTestsFromTestCase(VerbsFinderTests),
