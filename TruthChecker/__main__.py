@@ -1,6 +1,6 @@
 import sys
 
-from Main import *
+from TruthChecker.src.Main import *
 
 # MAIN SCRIPT :
 if len(sys.argv) == 1:
